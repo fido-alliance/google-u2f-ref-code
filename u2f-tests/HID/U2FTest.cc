@@ -370,8 +370,8 @@ int main(int argc, char* argv[]) {
   uint32_t ctr2;
   PASS(ctr2 = test_Sign(0x9000));
 
-  // Ctr should have incremented by 1.
-  CHECK_EQ(ctr2, ctr1 + 1);
+  // Ctr should have incremented.
+  CHECK_GT(ctr2, ctr1);
 
   U2Fob_destroy(device);
   return 0;
