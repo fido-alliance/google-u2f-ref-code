@@ -605,7 +605,7 @@ int main(int argc, char* argv[]) {
       arg_Pause = true;
     }
     if (!strncmp(argv[argc], "-d", 2)) {
-		  // Virtual Device or Software based authenticators.
+		  // Virtual Device (Driver).
 		  arg_VirtualDevice = true;
 	  }
   }
