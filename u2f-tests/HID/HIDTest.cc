@@ -28,6 +28,7 @@ using namespace std;
 int arg_Verbose = 0;  // default
 bool arg_Pause = false;  // default
 bool arg_Abort = true;  // default
+bool arg_VirtualDevice = false;
 
 static
 void checkPause() {
@@ -137,10 +138,12 @@ void test_LongEcho() {
 
   // Expected transfer times for 2ms bInterval.
   // We do not want fobs to be too slow or too agressive.
-  CHECK_GE(sent, .020);
-  CHECK_LE(sent, .075);
-  CHECK_GE(received, .020);
-  CHECK_LE(received, .075);
+  if (!arg_VirtualDevice) {
+    CHECK_GE(sent, .020);
+    CHECK_LE(sent, .075);
+    CHECK_GE(received, .020);
+    CHECK_LE(received, .075);
+  }
 }
 
 // Execute WINK, if implemented.
@@ -575,7 +578,7 @@ void test_Descriptor() {
 int main(int argc, char* argv[]) {
   if (argc < 2) {
     cerr << "Usage: " << argv[0]
-         << " <device-path> [-a] [-v] [-V] [-p]" << endl;
+         << " <device-path> [-a] [-v] [-V] [-p] [-d]" << endl;
     return -1;
   }
 
@@ -601,6 +604,10 @@ int main(int argc, char* argv[]) {
       // Pause at abort
       arg_Pause = true;
     }
+    if (!strncmp(argv[argc], "-d", 2)) {
+		  // Virtual Device (Driver).
+		  arg_VirtualDevice = true;
+	  }
   }
 
   srand((unsigned int) time(NULL));
