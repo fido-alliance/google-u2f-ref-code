@@ -251,7 +251,6 @@ int main(int argc, char* argv[]) {
   PASS(rapduLen = test_Sign(EXTENDED_APDU, 0x9000u));
   std::cout << "Check the Signature & Counter ";
   PASS(signCheckSignature(regReq, regRsp, authReq, authRsp, rapduLen));
-  CHECK_EQ(MAKE_UINT32(authRsp.ctr), ctr+1); ctr = MAKE_UINT32(authRsp.ctr);
 
   std::cout << "\nValid U2F_REGISTER, Short APDU";
   PASS(test_Enroll(SHORT_APDU, 0x9000u));
@@ -262,6 +261,5 @@ int main(int argc, char* argv[]) {
   PASS(rapduLen = test_Sign(SHORT_APDU, 0x9000u));
   std::cout << "Check the Signature & Counter";
   PASS(signCheckSignature(regReq, regRsp, authReq, authRsp, rapduLen));
-  CHECK_EQ(MAKE_UINT32(authRsp.ctr), ctr+1); ctr = MAKE_UINT32(authRsp.ctr);
   checkPause("----------------------------------\nEnd of Test, Succesfully Completed\n----------------------------------\nHit Key To Exit...");
 }
