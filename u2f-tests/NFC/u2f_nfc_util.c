@@ -18,10 +18,10 @@
 const char* printError(uint err);
 
 // Gloabl variables shared with top level routine
-flag log_Apdu = flagOFF;  // default
+flag log_Apdu   = flagOFF;  // default
 flag log_Crypto = flagOFF;
-flag arg_Pause = flagOFF;
-flag arg_Abort = flagON;
+flag arg_Pause  = flagOFF;
+flag arg_Abort  = flagON;
 cmd_apdu_type cmd_apdu;
 
 // Chaining Blocksize from reader - Le
